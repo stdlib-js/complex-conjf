@@ -45,38 +45,30 @@ limitations under the License.
 
 <!-- Package usage documentation. -->
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/complex-conjf
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm` branch][esm-url].
+-   If you are using Deno, visit the [`deno` branch][deno-url].
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd` branch][umd-url].
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
-To use in Observable,
-
 ```javascript
-conjf = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-conjf@umd/browser.js' )
-```
-
-To vendor stdlib functionality and avoid installing dependency trees for Node.js, you can use the UMD server build:
-
-```javascript
-var conjf = require( 'path/to/vendor/umd/complex-conjf/index.js' )
-```
-
-To include the bundle in a webpage,
-
-```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/complex-conjf@umd/browser.js"></script>
-```
-
-If no recognized module system is present, access bundle contents via the global scope:
-
-```html
-<script type="text/javascript">
-(function () {
-    window.conjf;
-})();
-</script>
+var conjf = require( '@stdlib/complex-conjf' );
 ```
 
 #### conjf( z )
@@ -115,16 +107,11 @@ str = v.toString();
 
 <!-- eslint no-undef: "error" -->
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/complex-float32@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-base-randu@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/math-base-special-round@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/complex-conjf@umd/browser.js"></script>
-<script type="text/javascript">
-(function () {
+```javascript
+var Complex64 = require( '@stdlib/complex-float32' );
+var randu = require( '@stdlib/random-base-randu' );
+var round = require( '@stdlib/math-base-special-round' );
+var conjf = require( '@stdlib/complex-conjf' );
 
 var re;
 var im;
@@ -137,11 +124,6 @@ for ( i = 0; i < 100; i++ ) {
     z = new Complex64( re, im );
     console.log( 'conjf(%s) = %s', z.toString(), conjf( z ).toString() );
 }
-
-})();
-</script>
-</body>
-</html>
 ```
 
 </section>
@@ -150,7 +132,111 @@ for ( i = 0; i < 100; i++ ) {
 
 <!-- C interface documentation. -->
 
+* * *
 
+<section class="c">
+
+## C APIs
+
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+
+<section class="intro">
+
+</section>
+
+<!-- /.intro -->
+
+<!-- C usage documentation. -->
+
+<section class="usage">
+
+### Usage
+
+```c
+#include "stdlib/complex/conjf.h"
+```
+
+#### stdlib_conjf( z )
+
+Returns the [complex conjugate][complex-conjugate] of a single-precision complex floating-point number.
+
+```c
+#include "stdlib/complex/float32.h"
+#include "stdlib/complex/realf.h"
+#include "stdlib/complex/imagf.h"
+
+stdlib_complex64_t z = stdlib_complex64( 5.0f, 2.0f );
+
+// ...
+
+stdlib_complex64_t v = stdlib_conjf( z );
+
+float re = stdlib_realf( v );
+// returns 5.0f
+
+float im = stdlib_imagf( v );
+// returns -2.0f
+```
+
+The function accepts the following arguments:
+
+-   **z**: `[in] stdlib_complex64_t` single-precision complex floating-point number.
+
+```c
+stdlib_complex64_t stdlib_conjf( const stdlib_complex64_t z );
+```
+
+</section>
+
+<!-- /.usage -->
+
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+
+<section class="notes">
+
+</section>
+
+<!-- /.notes -->
+
+<!-- C API usage examples. -->
+
+<section class="examples">
+
+### Examples
+
+```c
+#include "stdlib/complex/conjf.h"
+#include "stdlib/complex/realf.h"
+#include "stdlib/complex/imagf.h"
+#include "stdlib/complex/float32.h"
+#include <stdio.h>
+
+int main( void ) {
+    const stdlib_complex64_t x[] = {
+        stdlib_complex64( 5.0f, 2.0f ),
+        stdlib_complex64( -2.0f, 1.0f ),
+        stdlib_complex64( 0.0f, -0.0f ),
+        stdlib_complex64( 0.0f/0.0f, 0.0f/0.0f )
+    };
+
+    stdlib_complex64_t z;
+    stdlib_complex64_t v;
+    int i;
+    for ( i = 0; i < 4; i++ ) {
+        z = x[ i ];
+        v = stdlib_conjf( z );
+        printf( "conj(%f + %fi) = %f + %fi\n", stdlib_realf( z ), stdlib_imagf( z ), stdlib_realf( v ), stdlib_imagf( v ) );
+    }
+}
+```
+
+</section>
+
+<!-- /.examples -->
+
+</section>
+
+<!-- /.c -->
 
 <!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
@@ -207,8 +293,8 @@ Copyright &copy; 2016-2023. The Stdlib [Authors][stdlib-authors].
 [npm-image]: http://img.shields.io/npm/v/@stdlib/complex-conjf.svg
 [npm-url]: https://npmjs.org/package/@stdlib/complex-conjf
 
-[test-image]: https://github.com/stdlib-js/complex-conjf/actions/workflows/test.yml/badge.svg?branch=main
-[test-url]: https://github.com/stdlib-js/complex-conjf/actions/workflows/test.yml?query=branch:main
+[test-image]: https://github.com/stdlib-js/complex-conjf/actions/workflows/test.yml/badge.svg?branch=v0.1.1
+[test-url]: https://github.com/stdlib-js/complex-conjf/actions/workflows/test.yml?query=branch:v0.1.1
 
 [coverage-image]: https://img.shields.io/codecov/c/github/stdlib-js/complex-conjf/main.svg
 [coverage-url]: https://codecov.io/github/stdlib-js/complex-conjf?branch=main
