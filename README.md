@@ -52,7 +52,7 @@ limitations under the License.
 ## Usage
 
 ```javascript
-import conjf from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-conjf@deno/mod.js';
+import conjf from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-conjf@v0.2.0-deno/mod.js';
 ```
 
 #### conjf( z )
@@ -95,7 +95,7 @@ str = v.toString();
 import Complex64 from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-float32@deno/mod.js';
 import randu from 'https://cdn.jsdelivr.net/gh/stdlib-js/random-base-randu@deno/mod.js';
 import round from 'https://cdn.jsdelivr.net/gh/stdlib-js/math-base-special-round@deno/mod.js';
-import conjf from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-conjf@deno/mod.js';
+import conjf from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-conjf@v0.2.0-deno/mod.js';
 
 var re;
 var im;
